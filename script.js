@@ -1,10 +1,25 @@
   <script>
-    (function() {
-      // ── Konfigurasi ──
-      const STORAGE_KEY = 'wa_gate_passed_v5';
-      const GATE_EXPIRY_DAYS = 1;
-      const VERIFY_DELAY_MS = 2200;
+    const WEBSITE_URL = "https://deploy-project-by-ekkstore.vercel.app";
 
+(function () {
+
+  // ── Konfigurasi ──
+  const STORAGE_KEY = "wa_gate_passed_v5";
+  const GATE_EXPIRY_DAYS = 1;
+  const VERIFY_DELAY_MS = 2200;
+
+  function checkFollowAccess() {
+    try {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+      if (data && data.expiresAt && Date.now() < data.expiresAt) {
+        window.location.replace(WEBSITE_URL);
+        return;
+      }
+    } catch (e) {}
+  }
+
+  checkFollowAccess();
       // ── DOM ──
       const gateCard = document.getElementById('gateCard');
       const btnFollowWA = document.getElementById('btnFollowWA');
