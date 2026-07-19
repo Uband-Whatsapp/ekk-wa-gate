@@ -67,33 +67,9 @@
         }));
       }
 
-      function removeGateUI() {
-        if (gateRemoved) return;
-        gateRemoved = true;
-        gateCard.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        gateCard.style.opacity = '0';
-        gateCard.style.transform = 'scale(0.94)';
-        setTimeout(() => {
-          if (gateCard.parentNode) {
-            gateCard.parentNode.style.transition = 'opacity 0.3s ease';
-            gateCard.parentNode.style.opacity = '0';
-          }
-          setTimeout(() => {
-            if (gateCard.parentNode && gateCard.parentNode.parentNode) {
-              gateCard.parentNode.parentNode.style.transition = 'opacity 0.25s ease';
-              gateCard.parentNode.parentNode.style.opacity = '0';
-            }
-            setTimeout(() => {
-              document.body.innerHTML = '';
-              document.body.style.overflow = '';
-              document.body.style.position = '';
-              document.body.style.width = '';
-              document.body.style.display = 'none';
-            }, 300);
-          }, 250);
-        }, 450);
-      }
-
+  function removeGateUI() {
+    window.location.replace(WEBSITE_URL);
+ }
       // ── Step Indicator ──
       function updateStepIndicator(step) {
         [stepDot1, stepDot2, stepDot3].forEach(d => {
